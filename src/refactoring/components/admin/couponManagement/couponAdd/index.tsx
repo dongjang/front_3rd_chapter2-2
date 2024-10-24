@@ -3,11 +3,11 @@ import CouponAddButton from './CouponAddButton';
 import CouponAddInput from './CouponAddInput';
 
 const index = () => {
-  const { newCoupon, handleAddCoupon, addNewCoupon } = useCoupons();
+  const { newCoupon, updateCoupon, handleNewCoupon } = useCoupons();
   return (
     <div className="space-y-2 mb-4">
-      <CouponAddInput newCoupon={newCoupon} addNewCoupon={addNewCoupon} />
-      <CouponAddButton onClick={handleAddCoupon} />
+      <CouponAddInput newCoupon={newCoupon} handleNewCoupon={handleNewCoupon} />
+      <CouponAddButton onClick={updateCoupon} />
     </div>
   );
 };

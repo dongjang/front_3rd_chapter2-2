@@ -1,10 +1,4 @@
-import { Discount, Product } from '../../../../../../../types';
-
-interface ProductEditDiscountAddInputProps {
-  newDiscount: Discount;
-  handleNewDiscount: (discount: Discount) => void;
-  editingProduct: Product | null;
-}
+import { ProductEditDiscountAddInputProps } from '../../../../../../../types';
 
 const ProductEditDiscountAddInput = ({
   newDiscount,

@@ -3,7 +3,7 @@ import { describe, expect, test } from 'vitest';
 import { act, fireEvent, render, renderHook, screen, within } from '@testing-library/react';
 
 import { CartItem, Coupon, Product } from '../../types';
-import { useCart, useCoupons, useProducts } from '../../refactoring/hooks';
+import { useCart, useCoupons, useProductActions, useProducts } from '../../refactoring/hooks';
 import * as cartUtils from '../../refactoring/hooks/utils/cartUtils';
 import { AdminPage } from '../../refactoring/pages/AdminPage';
 import { CartPage } from '../../refactoring/pages/CartPage';
@@ -249,7 +249,7 @@ describe('basic > ', () => {
     });
 
     test('제품을 업데이트할 수 있다.', () => {
-      const { result } = renderHook(() => useProducts());
+      const { result } = renderHook(() => useProductActions());
       const updatedProduct = { ...initialProducts[0], name: 'Updated Product' };
 
       act(() => {
@@ -269,7 +269,7 @@ describe('basic > ', () => {
     });
 
     test('새로운 제품을 추가할 수 있다.', () => {
-      const { result } = renderHook(() => useProducts());
+      const { result } = renderHook(() => useProductActions());
       const newProduct: Product = {
         id: 'p4',
         name: 'New Product',

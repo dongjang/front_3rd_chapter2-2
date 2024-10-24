@@ -6,9 +6,8 @@ interface CouponStore {
   coupons: Coupon[];
   newCoupon: Coupon;
   addCoupon: (coupon: Coupon) => void;
-  handleAddCoupon: () => void;
-  setNewCoupon: (coupon: Coupon) => void;
-  addNewCoupon: (coupon: Coupon) => void;
+  updateCoupon: () => void;
+  handleNewCoupon: (coupon: Coupon) => void;
   initialCoupons: (coupon: Coupon[]) => void;
 }
 
@@ -16,7 +15,7 @@ const useCouponStore = create<CouponStore>((set) => ({
   coupons: INITIAL_COUPON_LIST,
   newCoupon: INITIAL_NEW_COUPON,
   addCoupon: (newCoupon: Coupon) => set((state) => ({ coupons: [...state.coupons, newCoupon] })),
-  handleAddCoupon: () => {
+  updateCoupon: () => {
     set((state) => {
       const newCoupon = state.newCoupon;
       return {
@@ -25,8 +24,7 @@ const useCouponStore = create<CouponStore>((set) => ({
       };
     });
   },
-  setNewCoupon: (newCoupon: Coupon) => set({ newCoupon }),
-  addNewCoupon: (newCoupon: Coupon) => set({ newCoupon }),
+  handleNewCoupon: (newCoupon: Coupon) => set({ newCoupon }),
   //테스트 코드 통과용
   initialCoupons: (coupons: Coupon[]) =>
     set(() => ({

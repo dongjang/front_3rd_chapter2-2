@@ -1,12 +1,12 @@
 import useProductStore from '../store/useProductStore';
 
 export const useProductDiscount = () => {
-  const { handleRemoveDiscount, handleAddDiscount, newDiscount, handleAddNewDiscount } = useProductStore();
+  const { removeDiscount, addProductDiscount, newDiscount, handleNewDiscount } = useProductStore();
 
   return {
-    handleRemoveDiscount,
-    handleNewDiscount: handleAddNewDiscount,
+    removeDiscount,
+    handleNewDiscount,
     newDiscount,
-    handleAddDiscount,
+    addProductDiscount,
   };
 };

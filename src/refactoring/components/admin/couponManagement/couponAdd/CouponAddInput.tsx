@@ -1,31 +1,27 @@
-import { Coupon } from '../../../../../types';
+import { CouponAddInputProps } from '../../../../../types';
 
-interface CouponAddInputProps {
-  newCoupon: Coupon;
-  addNewCoupon: (coupon: Coupon) => void;
-}
-const CouponAddInput = ({ newCoupon, addNewCoupon }: CouponAddInputProps) => {
+const CouponAddInput = ({ newCoupon, handleNewCoupon }: CouponAddInputProps) => {
   return (
     <>
       <input
         type="text"
         placeholder="쿠폰 이름"
         value={newCoupon.name}
-        onChange={(e) => addNewCoupon({ ...newCoupon, name: e.target.value })}
+        onChange={(e) => handleNewCoupon({ ...newCoupon, name: e.target.value })}
         className="w-full p-2 border rounded"
       />
       <input
         type="text"
         placeholder="쿠폰 코드"
         value={newCoupon.code}
-        onChange={(e) => addNewCoupon({ ...newCoupon, code: e.target.value })}
+        onChange={(e) => handleNewCoupon({ ...newCoupon, code: e.target.value })}
         className="w-full p-2 border rounded"
       />
       <div className="flex gap-2">
         <select
           value={newCoupon.discountType}
           onChange={(e) =>
-            addNewCoupon({
+            handleNewCoupon({
               ...newCoupon,
               discountType: e.target.value as 'amount' | 'percentage',
             })
@@ -39,7 +35,7 @@ const CouponAddInput = ({ newCoupon, addNewCoupon }: CouponAddInputProps) => {
           placeholder="할인 값"
           value={newCoupon.discountValue}
           onChange={(e) =>
-            addNewCoupon({
+            handleNewCoupon({
               ...newCoupon,
               discountValue: parseInt(e.target.value),
             })

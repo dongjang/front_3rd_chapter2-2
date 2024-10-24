@@ -3,7 +3,7 @@ import Title from '../../../../../title/Title';
 
 const ProductEditDiscountInfo = () => {
   const { editingProduct } = useProducts();
-  const { handleRemoveDiscount } = useProductDiscount();
+  const { removeDiscount } = useProductDiscount();
   if (!editingProduct) {
     return;
   }
@@ -16,7 +16,7 @@ const ProductEditDiscountInfo = () => {
             {discount.quantity}개 이상 구매 시 {discount.rate * 100}% 할인
           </span>
           <button
-            onClick={() => handleRemoveDiscount(editingProduct.id, index)}
+            onClick={() => removeDiscount(editingProduct.id, index)}
             className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
             삭제
           </button>

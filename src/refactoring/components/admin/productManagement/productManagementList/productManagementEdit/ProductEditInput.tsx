@@ -1,7 +1,8 @@
-import { useProducts } from '../../../../../hooks';
+import { useProducts, useProductActions } from '../../../../../hooks';
 
 const ProductEditInput = () => {
-  const { editingProduct, handleProductUpdate, handleStockUpdate } = useProducts();
+  const { editingProduct } = useProducts();
+  const { handleEditingProductInput, handleProductSotck } = useProductActions();
 
   if (!editingProduct) {
     return;
@@ -15,7 +16,7 @@ const ProductEditInput = () => {
         <input
           type="text"
           value={editingProduct?.name}
-          onChange={(e) => handleProductUpdate(productId, 'name', e.target.value)}
+          onChange={(e) => handleEditingProductInput(productId, 'name', e.target.value)}
           className="w-full p-2 border rounded"
         />
       </div>
@@ -24,7 +25,7 @@ const ProductEditInput = () => {
         <input
           type="number"
           value={editingProduct?.price}
-          onChange={(e) => handleProductUpdate(productId, 'price', parseInt(e.target.value))}
+          onChange={(e) => handleEditingProductInput(productId, 'price', parseInt(e.target.value))}
           className="w-full p-2 border rounded"
         />
       </div>
@@ -33,7 +34,7 @@ const ProductEditInput = () => {
         <input
           type="number"
           value={editingProduct?.stock}
-          onChange={(e) => handleStockUpdate(productId, parseInt(e.target.value))}
+          onChange={(e) => handleProductSotck(productId, parseInt(e.target.value))}
           className="w-full p-2 border rounded"
         />
       </div>

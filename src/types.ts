@@ -43,18 +43,17 @@ export interface ProductStore {
   isNewProductForm: boolean;
   editingProduct: Product | null;
   newDiscount: Discount;
-  handleAddNewDiscount: (discount: Discount) => void;
-  showNewProductAddForm: () => void;
+  handleNewDiscount: (discount: Discount) => void;
+  toggleNewProductForm: () => void;
   updateProduct: (updatedProduct: Product) => void;
   addProduct: (newProduct: Product) => void;
-  handleStockUpdate: (productId: string, newStock: number) => void;
-  handleRemoveDiscount: (productId: string, index: number) => void;
-  handleAddDiscount: (productId: string) => void;
-  handleAccordionToggle: (product: Product) => void;
-  setEditingProduct: (product: Product | null) => void;
-  handleProductUpdate: (productId: string, key: keyof Product, value: string | number) => void;
-  handleEditComplete: () => void;
-  handleEditProduct: (productId: string) => void;
+  handleProductSotck: (productId: string, newStock: number) => void;
+  removeDiscount: (productId: string, index: number) => void;
+  addProductDiscount: (productId: string) => void;
+  toggleProductAccordion: (product: Product) => void;
+  handleEditingProductInput: (productId: string, key: keyof Product, value: string | number) => void;
+  completeProductEdit: () => void;
+  updateEditProduct: (productId: string) => void;
   initialProducts(Products: Product[]): void;
 }
 
@@ -98,4 +97,15 @@ export interface CartProductStockInfoProps {
 export interface CartProductAddButtonProps {
   onClick: () => void;
   remainingStock: number;
+}
+
+export interface ProductEditDiscountAddInputProps {
+  newDiscount: Discount;
+  handleNewDiscount: (discount: Discount) => void;
+  editingProduct: Product | null;
+}
+
+export interface CouponAddInputProps {
+  newCoupon: Coupon;
+  handleNewCoupon: (coupon: Coupon) => void;
 }

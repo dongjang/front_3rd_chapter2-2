@@ -1,7 +1,7 @@
 import useCouponStore from '../store/useCouponStore';
 
 export const useCoupons = () => {
-  const { coupons, newCoupon, addCoupon, handleAddCoupon, addNewCoupon, initialCoupons } = useCouponStore();
+  const { coupons, newCoupon, addCoupon, handleNewCoupon, updateCoupon, initialCoupons } = useCouponStore();
 
-  return { coupons, newCoupon, addCoupon, handleAddCoupon, addNewCoupon, initialCoupons };
+  return { coupons, newCoupon, addCoupon, handleNewCoupon, updateCoupon, initialCoupons };
 };

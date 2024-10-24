@@ -1,10 +1,11 @@
-import { useProducts } from '../../../../hooks';
+import { useProductActions, useProducts } from '../../../../hooks';
 import Title from '../../../../title/Title';
 import ProductManagementAddButton from './ProductManagementAddButton';
 import ProductManagementAddInput from './ProductManagementAddInput';
 
 const index = () => {
-  const { isNewProductForm, newProduct, handleNewProduct, handleAddNewProduct } = useProducts();
+  const { isNewProductForm } = useProducts();
+  const { newProduct, handleNewProduct, handleAddNewProduct } = useProductActions();
   return (
     <div>
       {isNewProductForm && (

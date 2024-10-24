@@ -1,8 +1,9 @@
-import { useProducts } from '../../../../hooks';
+import { useProductActions, useProducts } from '../../../../hooks';
 import ProductManagementEdit from './productManagementEdit';
 
 const index = () => {
-  const { products, openProductIds, handleAccordionToggle } = useProducts();
+  const { products, openProductIds } = useProducts();
+  const { toggleProductAccordion } = useProductActions();
   return (
     <div>
       <div className="space-y-2">
@@ -10,7 +11,7 @@ const index = () => {
           <div key={product.id} data-testid={`product-${index + 1}`} className="bg-white p-4 rounded shadow">
             <button
               data-testid="toggle-button"
-              onClick={() => handleAccordionToggle(product)}
+              onClick={() => toggleProductAccordion(product)}
               className="w-full text-left font-semibold">
               {product.name} - {product.price}원 (재고: {product.stock})
             </button>

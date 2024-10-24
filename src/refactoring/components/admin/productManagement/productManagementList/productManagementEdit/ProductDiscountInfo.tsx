@@ -1,8 +1,9 @@
 import { productIdProps } from '../../../../../../types';
-import { useProducts } from '../../../../../hooks';
+import { useProducts, useProductActions } from '../../../../../hooks';
 
 const ProductDiscountInfo = ({ productId }: productIdProps) => {
-  const { selectedProducts, handleEditProduct } = useProducts();
+  const { selectedProducts } = useProducts();
+  const { updateEditProduct } = useProductActions();
 
   return (
     <div>
@@ -16,7 +17,7 @@ const ProductDiscountInfo = ({ productId }: productIdProps) => {
         ))}
         <button
           data-testid="modify-button"
-          onClick={() => handleEditProduct(productId)}
+          onClick={() => updateEditProduct(productId)}
           className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 mt-2">
           수정
         </button>
