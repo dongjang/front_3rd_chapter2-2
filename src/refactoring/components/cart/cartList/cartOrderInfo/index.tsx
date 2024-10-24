@@ -1,5 +1,5 @@
 import { useCart } from '../../../../hooks';
-import Title from '../../../../title/Title';
+import Title from '../../../../atom/Title';
 
 const index = () => {
   const { calculateTotal } = useCart();

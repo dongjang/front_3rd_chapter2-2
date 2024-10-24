@@ -1,6 +1,6 @@
 import CartProductList from '../components/cart/cartProductList/index.tsx';
 import CartList from '../components/cart/cartList/index.tsx';
-import Title from '../title/Title.tsx';
+import Title from '../atom/Title.tsx';
 
 export const CartPage = () => {
   return (

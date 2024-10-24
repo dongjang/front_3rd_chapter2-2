@@ -1,5 +1,5 @@
 import { useProductForm, useProducts } from '../../../../hooks';
-import Title from '../../../../title/Title';
+import Title from '../../../../atom/Title';
 import ProductManagementAddButton from './ProductManagementAddButton';
 import ProductManagementAddInput from './ProductManagementAddInput';
 

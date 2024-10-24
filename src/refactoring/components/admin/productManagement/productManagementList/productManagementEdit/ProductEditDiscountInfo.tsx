@@ -1,5 +1,5 @@
 import { useProducts, useProductDiscount } from '../../../../../hooks';
-import Title from '../../../../../title/Title';
+import Title from '../../../../../atom/Title';
 
 const ProductEditDiscountInfo = () => {
   const { editingProduct } = useProducts();
