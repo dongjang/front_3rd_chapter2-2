@@ -3,8 +3,9 @@ import { act, fireEvent, render, renderHook, screen, within } from '@testing-lib
 
 import { CartPage } from '../../refactoring/pages/CartPage';
 import { AdminPage } from '../../refactoring/pages/AdminPage';
-import { Product } from '../../refactoring/types';
+import { Coupon, Product } from '../../refactoring/types';
 import { useProductActions, useProductDiscount, useProductForm, useProducts } from '../../refactoring/hooks';
+import { calculateCartTotal, getAppliedDiscount, getMaxDiscount } from '../../refactoring/hooks/utils/cartUtils';
 
 const TestAdminPage = () => {
   return <AdminPage />;
@@ -169,7 +170,47 @@ describe('advanced > ', () => {
   });
 
   describe('자유롭게 작성해보세요.', () => {
-    test('새로운 유틸 함수를 만든 후에 테스트 코드를 작성해서 실행해보세요', () => {});
+    describe('새로운 유틸 함수를 만든 후에 테스트 코드를 작성해서 실행해보세요', () => {
+      const initalCartItem = {
+        product: {
+          id: 'p1',
+          name: '상품1',
+          price: 10000,
+          stock: 20,
+          discounts: [
+            { quantity: 10, rate: 0.1 },
+            { quantity: 20, rate: 0.2 },
+          ],
+        },
+        quantity: 10,
+      };
+      test('상품에 적용된 할인율을 구할 수 있다.', () => {
+        const appliedDRate = getAppliedDiscount(initalCartItem);
+        expect(appliedDRate).toEqual(0.1);
+      });
+
+      test('상품의 최대 할인율을 구할 수 있다.', () => {
+        const maxRate = getMaxDiscount(initalCartItem.product.discounts);
+        expect(maxRate).toEqual(0.2);
+      });
+
+      test('장바구니의 상품 금액 정보를 정확하게 표시할 수 있다.', () => {
+        const selectedCoupon: Coupon = {
+          name: '쿠폰',
+          code: '코드',
+          discountType: 'amount',
+          discountValue: 5000,
+        };
+        const { totalBeforeDiscount, totalAfterDiscount, totalDiscount } = calculateCartTotal(
+          [initalCartItem],
+          selectedCoupon,
+        );
+
+        expect(totalBeforeDiscount).toBe(100000);
+        expect(totalDiscount).toBe(15000);
+        expect(totalAfterDiscount).toBe(85000);
+      });
+    });
 
     describe('새로운 hook 함수를 만든 후에 테스트 코드를 작성해서 실행해보세요', () => {
       describe('useProductDiscount  ', () => {
