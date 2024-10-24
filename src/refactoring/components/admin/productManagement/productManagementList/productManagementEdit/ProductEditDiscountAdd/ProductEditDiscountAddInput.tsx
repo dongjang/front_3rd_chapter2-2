@@ -1,3 +1,4 @@
+import Input from '../../../../../../atom/input';
 import { ProductEditDiscountAddInputProps } from '../../../../../../types/productType';
 
 const ProductEditDiscountAddInput = ({
@@ -10,29 +11,21 @@ const ProductEditDiscountAddInput = ({
   }
   return (
     <>
-      <input
+      <Input
         type="number"
         placeholder="수량"
         value={newDiscount.quantity}
-        onChange={(e) =>
-          handleNewDiscount({
-            ...newDiscount,
-            quantity: parseInt(e.target.value),
-          })
-        }
-        className="w-1/3 p-2 border rounded"
+        onChange={(value) => {
+          handleNewDiscount({ ...newDiscount, quantity: typeof value === 'string' ? parseInt(value) : value });
+        }}
       />
-      <input
+      <Input
         type="number"
         placeholder="할인율 (%)"
         value={newDiscount.rate * 100}
-        onChange={(e) =>
-          handleNewDiscount({
-            ...newDiscount,
-            rate: parseInt(e.target.value) / 100,
-          })
-        }
-        className="w-1/3 p-2 border rounded"
+        onChange={(value) => {
+          handleNewDiscount({ ...newDiscount, rate: typeof value === 'string' ? parseInt(value) : value / 100 });
+        }}
       />
     </>
   );

@@ -1,21 +1,18 @@
+import Input from '../../../../atom/input';
 import { CouponAddInputProps } from '../../../../types/couponType';
 
 const CouponAddInput = ({ newCoupon, handleNewCoupon }: CouponAddInputProps) => {
   return (
     <>
-      <input
-        type="text"
+      <Input
         placeholder="쿠폰 이름"
         value={newCoupon.name}
-        onChange={(e) => handleNewCoupon({ ...newCoupon, name: e.target.value })}
-        className="w-full p-2 border rounded"
+        onChange={(value) => handleNewCoupon({ ...newCoupon, name: value.toString() })}
       />
-      <input
-        type="text"
+      <Input
         placeholder="쿠폰 코드"
         value={newCoupon.code}
-        onChange={(e) => handleNewCoupon({ ...newCoupon, code: e.target.value })}
-        className="w-full p-2 border rounded"
+        onChange={(value) => handleNewCoupon({ ...newCoupon, code: value.toString() })}
       />
       <div className="flex gap-2">
         <select
@@ -30,17 +27,13 @@ const CouponAddInput = ({ newCoupon, handleNewCoupon }: CouponAddInputProps) => 
           <option value="amount">금액(원)</option>
           <option value="percentage">할인율(%)</option>
         </select>
-        <input
+        <Input
           type="number"
           placeholder="할인 값"
           value={newCoupon.discountValue}
-          onChange={(e) =>
-            handleNewCoupon({
-              ...newCoupon,
-              discountValue: parseInt(e.target.value),
-            })
-          }
-          className="w-full p-2 border rounded"
+          onChange={(value) => {
+            handleNewCoupon({ ...newCoupon, discountValue: typeof value === 'string' ? parseInt(value) : value });
+          }}
         />
       </div>{' '}
     </>
