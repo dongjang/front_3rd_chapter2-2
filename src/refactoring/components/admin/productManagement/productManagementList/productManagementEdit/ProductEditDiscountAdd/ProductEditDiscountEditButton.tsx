@@ -1,6 +1,4 @@
-interface ProductEditDiscountEditButtonProds {
-  onClick: () => void;
-}
+import { ProductEditDiscountEditButtonProds } from '../../../../../../types/productType';
 
 const ProductEditDiscountEditButton = ({ onClick }: ProductEditDiscountEditButtonProds) => {
   return (

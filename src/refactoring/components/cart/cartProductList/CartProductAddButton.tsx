@@ -1,4 +1,4 @@
-import { CartProductAddButtonProps } from '../../../../types';
+import { CartProductAddButtonProps } from '../../../types';
 
 const CartProductAddButton = ({ onClick, remainingStock }: CartProductAddButtonProps) => {
   return (

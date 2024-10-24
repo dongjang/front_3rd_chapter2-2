@@ -1,15 +1,6 @@
 import { create } from 'zustand';
-import { Coupon } from '../../types.ts';
 import { INITIAL_COUPON_LIST, INITIAL_NEW_COUPON } from '../constants/constants.ts';
-
-interface CouponStore {
-  coupons: Coupon[];
-  newCoupon: Coupon;
-  addCoupon: (coupon: Coupon) => void;
-  updateCoupon: () => void;
-  handleNewCoupon: (coupon: Coupon) => void;
-  initialCoupons: (coupon: Coupon[]) => void;
-}
+import { Coupon, CouponStore } from '../types/couponType.ts';
 
 const useCouponStore = create<CouponStore>((set) => ({
   coupons: INITIAL_COUPON_LIST,

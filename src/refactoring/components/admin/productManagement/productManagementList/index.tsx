@@ -1,9 +1,9 @@
-import { useProductActions, useProducts } from '../../../../hooks';
+import { useProductForm, useProducts } from '../../../../hooks';
 import ProductManagementEdit from './productManagementEdit';
 
 const index = () => {
   const { products, openProductIds } = useProducts();
-  const { toggleProductAccordion } = useProductActions();
+  const { toggleProductAccordion } = useProductForm();
   return (
     <div>
       <div className="space-y-2">

@@ -1,5 +1,5 @@
-import { productIdProps } from '../../../../../../types';
 import { useProducts, useProductActions } from '../../../../../hooks';
+import { productIdProps } from '../../../../../types/productType';
 
 const ProductDiscountInfo = ({ productId }: productIdProps) => {
   const { selectedProducts } = useProducts();

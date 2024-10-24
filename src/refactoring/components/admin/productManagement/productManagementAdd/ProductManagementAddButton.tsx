@@ -1,6 +1,5 @@
-interface productManagementAddButtonProps {
-  onClick: () => void;
-}
+import { productManagementAddButtonProps } from '../../../../types/productType';
+
 const ProductManagementAddButton = ({ onClick }: productManagementAddButtonProps) => {
   return (
     <div>

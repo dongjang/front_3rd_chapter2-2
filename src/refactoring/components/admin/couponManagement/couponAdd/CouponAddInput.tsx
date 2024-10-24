@@ -1,4 +1,4 @@
-import { CouponAddInputProps } from '../../../../../types';
+import { CouponAddInputProps } from '../../../../types/couponType';
 
 const CouponAddInput = ({ newCoupon, handleNewCoupon }: CouponAddInputProps) => {
   return (

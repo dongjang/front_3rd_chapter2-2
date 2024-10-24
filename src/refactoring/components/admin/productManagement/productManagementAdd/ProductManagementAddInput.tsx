@@ -1,9 +1,4 @@
-import { Product } from '../../../../../types';
-
-interface productManagementAddInputProps {
-  newProduct: Omit<Product, 'id'>;
-  handleNewProduct: (product: Omit<Product, 'id'>) => void;
-}
+import { productManagementAddInputProps } from '../../../../types/productType';
 
 const ProductManagementAddInput = ({ newProduct, handleNewProduct }: productManagementAddInputProps) => {
   return (

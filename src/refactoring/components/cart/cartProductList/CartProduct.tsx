@@ -1,4 +1,4 @@
-import { CartProductProps } from '../../../../types';
+import { CartProductProps } from '../../../types';
 
 const CartProduct = ({ product }: CartProductProps) => {
   return (

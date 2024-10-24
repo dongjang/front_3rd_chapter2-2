@@ -1,16 +1,6 @@
 import { create } from 'zustand';
-import { CalculateTotalType, CartItem, Coupon, Product } from '../../types';
 import { calculateCartTotal, updateCartItemQuantity } from '../hooks/utils/cartUtils';
-
-interface CartState {
-  cart: CartItem[];
-  selectedCoupon: Coupon | null;
-  addToCart: (product: Product) => void;
-  removeFromCart: (productId: string) => void;
-  updateQuantity: (productId: string, newQuantity: number) => void;
-  applyCoupon: (coupon: Coupon) => void;
-  calculateTotal: () => CalculateTotalType;
-}
+import { CartState } from '../types/cartType';
 
 export const useCartStore = create<CartState>((set, get) => ({
   cart: [],

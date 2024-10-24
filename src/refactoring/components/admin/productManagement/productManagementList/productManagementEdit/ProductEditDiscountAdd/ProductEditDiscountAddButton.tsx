@@ -1,6 +1,4 @@
-interface ProductEditDiscountAddButtonProps {
-  onClick: () => void;
-}
+import { ProductEditDiscountAddButtonProps } from '../../../../../../types/productType';
 
 const ProductEditDiscountAddButton = ({ onClick }: ProductEditDiscountAddButtonProps) => {
   return (

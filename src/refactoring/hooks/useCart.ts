@@ -1,5 +1,5 @@
-import { Product } from '../../types';
 import { useCartStore } from '../store/useCartStore';
+import { Product } from '../types';
 
 export const useCart = () => {
   const { cart, addToCart, removeFromCart, updateQuantity, applyCoupon, calculateTotal, selectedCoupon } =

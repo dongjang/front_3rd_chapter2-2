@@ -1,5 +1,5 @@
-import { CartProductStockInfoProps } from '../../../../types';
 import { getMaxDiscount } from '../../../hooks/utils/cartUtils';
+import { CartProductStockInfoProps } from '../../../types';
 
 const CartProductStockInfo = ({ product, remainingStock }: CartProductStockInfoProps) => {
   return (

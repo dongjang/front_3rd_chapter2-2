@@ -1,5 +1,5 @@
-import { productIdProps } from '../../../../../../types';
 import { useProducts } from '../../../../../hooks';
+import { productIdProps } from '../../../../../types';
 import ProductDiscountInfo from './ProductDiscountInfo';
 import ProductEditDiscountAdd from './ProductEditDiscountAdd';
 import ProductEditDiscountInfo from './ProductEditDiscountInfo';

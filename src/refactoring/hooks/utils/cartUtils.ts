@@ -1,4 +1,4 @@
-import { CartItem, Coupon } from '../../../types';
+import { CartItem, Coupon } from '../../types';
 
 export const calculateItemTotal = (item: CartItem) => {
   const { product, quantity } = item;
@@ -38,7 +38,6 @@ export const calculateCartTotal = (cart: CartItem[], selectedCoupon: Coupon | nu
 
   let totalDiscount = totalBeforeDiscount - totalAfterDiscount;
 
-  // 쿠폰 적용
   if (selectedCoupon) {
     if (selectedCoupon.discountType === 'amount') {
       totalAfterDiscount = Math.max(0, totalAfterDiscount - selectedCoupon.discountValue);

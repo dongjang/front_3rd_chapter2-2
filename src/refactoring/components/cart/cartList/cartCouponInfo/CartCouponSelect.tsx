@@ -1,5 +1,5 @@
-import { CounponsProps } from '../../../../../types';
 import { useCart } from '../../../../hooks';
+import { CounponsProps } from '../../../../types/couponType';
 
 const CartCouponSelect = ({ coupons }: CounponsProps) => {
   const { applyCoupon } = useCart();

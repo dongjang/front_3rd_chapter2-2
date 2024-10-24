@@ -1,5 +1,5 @@
-import { ProductInfoProps } from '../../../../../types';
 import { getAppliedDiscount } from '../../../../hooks/utils/cartUtils';
+import { ProductInfoProps } from '../../../../types/productType';
 
 const CartProductInfo = ({ item }: ProductInfoProps) => {
   const appliedDiscount = getAppliedDiscount(item);

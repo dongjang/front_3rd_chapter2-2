@@ -1,6 +1,5 @@
-interface CouponAddButtonProps {
-  onClick: () => void;
-}
+import { CouponAddButtonProps } from '../../../../types/couponType';
+
 const CouponAddButton = ({ onClick }: CouponAddButtonProps) => {
   return (
     <div>

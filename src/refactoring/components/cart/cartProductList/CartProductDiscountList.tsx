@@ -1,4 +1,4 @@
-import { CartProductProps } from '../../../../types';
+import { CartProductProps } from '../../../types';
 
 const CartProductDiscountList = ({ product }: CartProductProps) => {
   return (

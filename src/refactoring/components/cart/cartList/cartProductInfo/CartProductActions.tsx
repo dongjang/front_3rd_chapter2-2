@@ -1,5 +1,5 @@
-import { CartProductActionsProps } from '../../../../../types';
 import { useCart } from '../../../../hooks';
+import { CartProductActionsProps } from '../../../../types/cartType';
 
 const CartProductActions = ({ productId, quantity }: CartProductActionsProps) => {
   const { updateQuantity, removeFromCart } = useCart();

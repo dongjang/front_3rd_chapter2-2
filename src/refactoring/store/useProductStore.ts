@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { Product, Discount, ProductStore } from '../../types';
-import { INITIAL_PRODUCT_LIST, INITIAL_NEW_DISCOUNT } from '../constants/constants';
+import { INITIAL_NEW_DISCOUNT, INITIAL_PRODUCT_LIST } from '../constants/constants';
+import { Discount, Product, ProductStore } from '../types/productType';
 
 const useProductStore = create<ProductStore>((set) => ({
   products: INITIAL_PRODUCT_LIST,

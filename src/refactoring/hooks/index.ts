@@ -3,3 +3,4 @@ export * from './useCoupon.ts';
 export * from './useProduct.ts';
 export * from './useProductDiscount.ts';
 export * from './useProductActions.ts';
+export * from './useProductForm.ts';

@@ -1,8 +1,8 @@
-import { useProducts, useProductActions } from '../../../../../hooks';
+import { useProducts, useProductForm } from '../../../../../hooks';
 
 const ProductEditInput = () => {
   const { editingProduct } = useProducts();
-  const { handleEditingProductInput, handleProductSotck } = useProductActions();
+  const { handleEditingProductInput, handleProductSotck } = useProductForm();
 
   if (!editingProduct) {
     return;

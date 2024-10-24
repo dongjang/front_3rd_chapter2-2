@@ -1,4 +1,4 @@
-import { ProductEditDiscountAddInputProps } from '../../../../../../../types';
+import { ProductEditDiscountAddInputProps } from '../../../../../../types/productType';
 
 const ProductEditDiscountAddInput = ({
   newDiscount,
