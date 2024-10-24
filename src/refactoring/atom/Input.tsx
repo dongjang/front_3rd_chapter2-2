@@ -16,7 +16,7 @@ const Input = ({ id, type = 'text', placeholder, value, onChange, className = ''
       value={value}
       onChange={(e) => {
         const newValue = type === 'number' ? parseInt(e.target.value) : e.target.value;
-        onChange(newValue); // 여기에 전달할 때는 newValue를 사용합니다.
+        onChange(newValue);
       }}
       className={`w-full p-2 border rounded ${className}`}
     />
