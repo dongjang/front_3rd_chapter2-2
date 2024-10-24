@@ -1,22 +1,59 @@
-import { useState } from "react";
-import { Product } from "../../types.ts";
+import { useState } from 'react';
+import { INITIAL_PRODUCT } from '../constants/constants';
+import useProductStore from '../store/useProductStore';
 
-export const useProducts = (initialProducts: Product[]) => {
-  const [products, setProducts] = useState(initialProducts);
+export const useProducts = () => {
+  const {
+    products,
+    addProduct,
+    handleStockUpdate,
+    handleRemoveDiscount,
+    handleAddDiscount,
+    openProductIds,
+    handleAccordionToggle,
+    selectedProducts,
+    isNewProductForm,
+    showNewProductAddForm,
+    editingProduct,
+    handleEditComplete,
+    handleEditProduct,
+    handleProductUpdate,
+    updateProduct,
+    newDiscount,
+    handleAddNewDiscount,
+    initialProducts,
+  } = useProductStore();
 
-  const updateProduct = (updatedProduct: Product) => {
-    setProducts((prevProducts) =>
-      prevProducts.map((p) => (p.id === updatedProduct.id ? updatedProduct : p))
-    );
-  };
+  const [newProduct, setNewProduct] = useState(INITIAL_PRODUCT);
 
-  const addProduct = (newProduct: Product) => {
-    setProducts((prevProducts) => [...prevProducts, newProduct]);
+  const handleAddNewProduct = () => {
+    const productWithId = { ...newProduct, id: `p${products.length + 1}` };
+    addProduct(productWithId);
+    setNewProduct(INITIAL_PRODUCT);
+    showNewProductAddForm();
   };
 
   return {
     products,
+    showNewProductAddForm,
+    isNewProductForm,
+    newProduct,
+    handleNewProduct: setNewProduct,
+    handleAddNewProduct,
+    handleAccordionToggle,
+    handleEditComplete,
+    handleEditProduct,
+    handleStockUpdate,
+    handleRemoveDiscount,
+    handleNewDiscount: handleAddNewDiscount,
+    newDiscount,
+    handleAddDiscount,
+    openProductIds,
+    editingProduct,
+    selectedProducts,
+    handleProductUpdate,
     updateProduct,
     addProduct,
+    initialProducts,
   };
 };
