@@ -78,13 +78,10 @@ export const updateCartItemQuantity = (
 export const getAppliedDiscount = (item: CartItem) => {
   const { discounts } = item.product;
   const { quantity } = item;
-  let appliedDiscount = 0;
-  for (const discount of discounts) {
-    if (quantity >= discount.quantity) {
-      appliedDiscount = Math.max(appliedDiscount, discount.rate);
-    }
-  }
-  return appliedDiscount;
+
+  return discounts.reduce((maxDiscount, discount) => {
+    return quantity >= discount.quantity ? Math.max(maxDiscount, discount.rate) : maxDiscount;
+  }, 0);
 };
 
 export const getMaxDiscount = (discounts: { quantity: number; rate: number }[]) => {
