@@ -7,8 +7,6 @@ export const useProducts = () => {
     products,
     addProduct,
     handleStockUpdate,
-    handleRemoveDiscount,
-    handleAddDiscount,
     openProductIds,
     handleAccordionToggle,
     selectedProducts,
@@ -19,8 +17,6 @@ export const useProducts = () => {
     handleEditProduct,
     handleProductUpdate,
     updateProduct,
-    newDiscount,
-    handleAddNewDiscount,
     initialProducts,
   } = useProductStore();
 
@@ -44,10 +40,6 @@ export const useProducts = () => {
     handleEditComplete,
     handleEditProduct,
     handleStockUpdate,
-    handleRemoveDiscount,
-    handleNewDiscount: handleAddNewDiscount,
-    newDiscount,
-    handleAddDiscount,
     openProductIds,
     editingProduct,
     selectedProducts,

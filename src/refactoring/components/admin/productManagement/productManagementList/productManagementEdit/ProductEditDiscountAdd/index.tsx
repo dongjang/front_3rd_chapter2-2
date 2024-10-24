@@ -1,10 +1,11 @@
-import { useProducts } from '../../../../../../hooks';
+import { useProducts, useProductDiscount } from '../../../../../../hooks/';
 import ProductEditDiscountAddButton from './ProductEditDiscountAddButton';
 import ProductEditDiscountAddInput from './ProductEditDiscountAddInput';
 import ProductEditDiscountEditButton from './ProductEditDiscountEditButton';
 
 const index = () => {
-  const { editingProduct, newDiscount, handleNewDiscount, handleAddDiscount, handleEditComplete } = useProducts();
+  const { editingProduct, handleEditComplete } = useProducts();
+  const { newDiscount, handleNewDiscount, handleAddDiscount } = useProductDiscount();
 
   if (!editingProduct) {
     return;

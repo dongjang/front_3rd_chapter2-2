@@ -1,8 +1,9 @@
-import { useProducts } from '../../../../../hooks';
+import { useProducts, useProductDiscount } from '../../../../../hooks';
 import Title from '../../../../../title/Title';
 
 const ProductEditDiscountInfo = () => {
-  const { editingProduct, handleRemoveDiscount } = useProducts();
+  const { editingProduct } = useProducts();
+  const { handleRemoveDiscount } = useProductDiscount();
   if (!editingProduct) {
     return;
   }
