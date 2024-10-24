@@ -1,8 +1,10 @@
 import { describe, expect, test } from 'vitest';
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, renderHook, screen, within } from '@testing-library/react';
 
 import { CartPage } from '../../refactoring/pages/CartPage';
 import { AdminPage } from '../../refactoring/pages/AdminPage';
+import { Product } from '../../refactoring/types';
+import { useProductActions, useProductDiscount, useProductForm, useProducts } from '../../refactoring/hooks';
 
 const TestAdminPage = () => {
   return <AdminPage />;
@@ -167,12 +169,160 @@ describe('advanced > ', () => {
   });
 
   describe('자유롭게 작성해보세요.', () => {
-    test('새로운 유틸 함수를 만든 후에 테스트 코드를 작성해서 실행해보세요', () => {
-      expect(true).toBe(true);
-    });
+    test('새로운 유틸 함수를 만든 후에 테스트 코드를 작성해서 실행해보세요', () => {});
 
-    test('새로운 hook 함수르 만든 후에 테스트 코드를 작성해서 실행해보세요', () => {
-      expect(true).toBe(true);
+    describe('새로운 hook 함수를 만든 후에 테스트 코드를 작성해서 실행해보세요', () => {
+      describe('useProductDiscount  ', () => {
+        const initialProducts: Product[] = [
+          {
+            id: 'p1',
+            name: '수정된 상품1',
+            price: 12000,
+            stock: 25,
+            discounts: [],
+          },
+          {
+            id: 'p2',
+            name: '상품2',
+            price: 20000,
+            stock: 20,
+            discounts: [{ quantity: 10, rate: 0.15 }],
+          },
+          {
+            id: 'p3',
+            name: '상품3',
+            price: 30000,
+            stock: 20,
+            discounts: [{ quantity: 10, rate: 0.2 }],
+          },
+          { name: '상품4', price: 15000, stock: 30, discounts: [], id: 'p4' },
+        ];
+
+        test('특정 제품의 할인을 제거할 수 있다.', () => {
+          const { result: productResult } = renderHook(() => useProducts());
+          const { result: discountResult } = renderHook(() => useProductDiscount());
+
+          act(() => {
+            discountResult.current.removeDiscount('p1', 0);
+          });
+
+          expect(productResult.current.products).toEqual(initialProducts);
+        });
+
+        test('특정 제품의 할인을 추가 수 있다.', () => {
+          const { result: productResult } = renderHook(() => useProducts());
+          const { result: discountResult } = renderHook(() => useProductDiscount());
+
+          act(() => {
+            discountResult.current.addProductDiscount('p4');
+            initialProducts[3].discounts.push({ quantity: 0, rate: 0 });
+          });
+
+          expect(productResult.current.products).toEqual(initialProducts);
+        });
+      });
+
+      describe('useProductActions  ', () => {
+        const initialProducts: Product[] = [
+          {
+            id: 'p1',
+            name: '수정된 상품1',
+            price: 12000,
+            stock: 25,
+            discounts: [],
+          },
+          {
+            id: 'p2',
+            name: '상품2',
+            price: 20000,
+            stock: 20,
+            discounts: [{ quantity: 10, rate: 0.15 }],
+          },
+          {
+            id: 'p3',
+            name: '상품3',
+            price: 30000,
+            stock: 20,
+            discounts: [{ quantity: 10, rate: 0.2 }],
+          },
+          { name: '상품4', price: 15000, stock: 30, discounts: [{ quantity: 0, rate: 0 }], id: 'p4' },
+          { name: '상품5', price: 50000, stock: 10, discounts: [{ quantity: 10, rate: 0.5 }], id: 'p5' },
+        ];
+        test('상품을 추가할 수 있다.', () => {
+          const { result } = renderHook(() => useProductActions());
+          const newProduct = {
+            name: '상품5',
+            price: 50000,
+            stock: 10,
+            discounts: [{ quantity: 10, rate: 0.5 }],
+            id: 'p5',
+          };
+          act(() => {
+            result.current.addProduct(newProduct);
+          });
+
+          expect(result.current.products).toEqual(initialProducts);
+        });
+        test('수정할 상품의 값을 초기화할 수 있다.', () => {
+          const { result: productActionsResult } = renderHook(() => useProductActions());
+          const { result: productsResult } = renderHook(() => useProducts());
+          act(() => {
+            productActionsResult.current.updateEditProduct('p1');
+          });
+
+          expect(productsResult.current.editingProduct).toEqual(initialProducts[0]);
+        });
+      });
+
+      describe('useProductFrom  ', () => {
+        test('추가할 상품의 토글을 실행할 수 있다.', () => {
+          const { result: productFormResult } = renderHook(() => useProductForm());
+          const { result: productsResult } = renderHook(() => useProducts());
+          act(() => {
+            productFormResult.current.toggleNewProductForm();
+          });
+          expect(productsResult.current.isNewProductForm).toEqual(true);
+          act(() => {
+            productFormResult.current.toggleNewProductForm();
+          });
+          expect(productsResult.current.isNewProductForm).toEqual(false);
+        });
+
+        test('입력한 상품의 재고를 변경할 수 있다.', () => {
+          const initialProducts: Product[] = [
+            {
+              id: 'p1',
+              name: '수정된 상품1',
+              price: 12000,
+              stock: 3,
+              discounts: [],
+            },
+            {
+              id: 'p2',
+              name: '상품2',
+              price: 20000,
+              stock: 20,
+              discounts: [{ quantity: 10, rate: 0.15 }],
+            },
+            {
+              id: 'p3',
+              name: '상품3',
+              price: 30000,
+              stock: 20,
+              discounts: [{ quantity: 10, rate: 0.2 }],
+            },
+            { name: '상품4', price: 15000, stock: 30, discounts: [{ quantity: 0, rate: 0 }], id: 'p4' },
+            { name: '상품5', price: 50000, stock: 10, discounts: [{ quantity: 10, rate: 0.5 }], id: 'p5' },
+          ];
+
+          const { result: productFormResult } = renderHook(() => useProductForm());
+          const { result: productsResult } = renderHook(() => useProducts());
+          act(() => {
+            productFormResult.current.handleProductSotck('p1', 3);
+          });
+          expect(productsResult.current.products).toEqual(initialProducts);
+        });
+      });
     });
   });
 });
