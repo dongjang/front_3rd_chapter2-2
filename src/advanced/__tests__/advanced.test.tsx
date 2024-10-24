@@ -1,24 +1,8 @@
 import { describe, expect, test } from 'vitest';
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 
-import { Coupon } from '../../types';
 import { CartPage } from '../../refactoring/pages/CartPage';
 import { AdminPage } from '../../refactoring/pages/AdminPage';
-
-const mockCoupons: Coupon[] = [
-  {
-    name: '5000원 할인 쿠폰',
-    code: 'AMOUNT5000',
-    discountType: 'amount',
-    discountValue: 5000,
-  },
-  {
-    name: '10% 할인 쿠폰',
-    code: 'PERCENT10',
-    discountType: 'percentage',
-    discountValue: 10,
-  },
-];
 
 const TestAdminPage = () => {
   return <AdminPage />;
