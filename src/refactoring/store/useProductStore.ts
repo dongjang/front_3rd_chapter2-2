@@ -10,7 +10,7 @@ const useProductStore = create<ProductStore>((set) => ({
   editingProduct: null as Product | null,
   newDiscount: INITIAL_NEW_DISCOUNT,
 
-  showNewProductAddForm: () => set((state) => ({ isNewProductForm: !state.isNewProductForm })),
+  toggleNewProductForm: () => set((state) => ({ isNewProductForm: !state.isNewProductForm })),
 
   updateProduct: (updatedProduct: Product) =>
     set((state) => ({
@@ -23,7 +23,7 @@ const useProductStore = create<ProductStore>((set) => ({
     }));
   },
 
-  handleStockUpdate: (productId: string, newStock: number) => {
+  handleProductSotck: (productId: string, newStock: number) => {
     set((state) => {
       const updatedProduct = state.products.find((p) => p.id === productId);
       if (updatedProduct) {
@@ -37,7 +37,7 @@ const useProductStore = create<ProductStore>((set) => ({
     });
   },
 
-  handleRemoveDiscount: (productId: string, index: number) =>
+  removeDiscount: (productId: string, index: number) =>
     set((state) => {
       const updatedProducts = state.products.map((product) => {
         if (product.id === productId) {
@@ -61,7 +61,7 @@ const useProductStore = create<ProductStore>((set) => ({
         editingProduct: updatedEditingProduct,
       };
     }),
-  handleAddDiscount: (productId: string) => {
+  addProductDiscount: (productId: string) => {
     set((state) => {
       const updatedProduct = state.products.find((p) => p.id === productId);
       if (updatedProduct) {
@@ -79,7 +79,7 @@ const useProductStore = create<ProductStore>((set) => ({
       return state;
     });
   },
-  handleAccordionToggle: (product: Product) => {
+  toggleProductAccordion: (product: Product) => {
     set((state) => {
       const productId = product.id;
       const newAccordionMap = new Map(state.openProductIds);
@@ -100,7 +100,7 @@ const useProductStore = create<ProductStore>((set) => ({
       };
     });
   },
-  handleEditProduct: (productId: string) => {
+  updateEditProduct: (productId: string) => {
     set((state) => {
       const editingProduct = state.products.find((p) => p.id === productId);
       return {
@@ -108,10 +108,7 @@ const useProductStore = create<ProductStore>((set) => ({
       };
     });
   },
-
-  setEditingProduct: (product: Product | null) => set({ editingProduct: product }),
-
-  handleProductUpdate: (productId: string, key: keyof Product, value: string | number) =>
+  handleEditingProductInput: (productId: string, key: keyof Product, value: string | number) =>
     set((state) => {
       if (state.editingProduct && state.editingProduct.id === productId) {
         const updatedProduct = { ...state.editingProduct, [key]: value };
@@ -120,7 +117,7 @@ const useProductStore = create<ProductStore>((set) => ({
       return state;
     }),
 
-  handleEditComplete: () =>
+  completeProductEdit: () =>
     set((state) => {
       if (state.editingProduct) {
         const updatedProducts = state.products.map((p) =>
@@ -135,7 +132,7 @@ const useProductStore = create<ProductStore>((set) => ({
       return state;
     }),
 
-  handleAddNewDiscount: (discount: Discount) =>
+  handleNewDiscount: (discount: Discount) =>
     set(() => ({
       newDiscount: discount,
     })),
