@@ -315,7 +315,7 @@ describe('advanced > ', () => {
         });
       });
 
-      describe('useProductFrom  ', () => {
+      describe('useProductForm  ', () => {
         test('추가할 상품의 토글을 실행할 수 있다.', () => {
           const { result: productFormResult } = renderHook(() => useProductForm());
           const { result: productsResult } = renderHook(() => useProducts());
