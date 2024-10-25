@@ -1,5 +1,5 @@
 import { useCart, useCoupons } from '../../../../hooks';
-import Title from '../../../../atom/Title';
+import Title from '../../../../atoms/Title';
 import CartCouponSelect from './CartCouponSelect';
 import CartSelectedCouponInfo from './CartSelectedCouponInfo';
 

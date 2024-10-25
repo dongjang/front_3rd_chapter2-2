@@ -1,5 +1,5 @@
 import { useCart, useProducts } from '../../../hooks';
-import Title from '../../../atom/Title';
+import Title from '../../../atoms/Title';
 import CartProduct from './CartProduct';
 import CartProductAddButton from './CartProductAddButton';
 import CartProductDiscountList from './CartProductDiscountList';

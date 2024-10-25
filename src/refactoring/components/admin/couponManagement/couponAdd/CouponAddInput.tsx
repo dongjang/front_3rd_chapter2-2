@@ -1,4 +1,4 @@
-import Input from '../../../../atom/input';
+import Input from '../../../../atoms/input';
 import { CouponAddInputProps } from '../../../../types/couponType';
 
 const CouponAddInput = ({ newCoupon, handleNewCoupon }: CouponAddInputProps) => {
