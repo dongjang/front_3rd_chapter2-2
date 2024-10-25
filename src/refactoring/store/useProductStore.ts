@@ -56,26 +56,49 @@ const useProductStore = create<ProductStore>((set) => ({
               discounts: state.editingProduct.discounts.filter((_, i) => i !== index),
             }
           : state.editingProduct;
+      const updatedSelectedProducts = new Map(state.selectedProducts);
+      if (updatedSelectedProducts.has(productId)) {
+        const selectedProduct = updatedSelectedProducts.get(productId);
+        if (selectedProduct) {
+          selectedProduct.discounts = selectedProduct.discounts.filter((_, i) => i !== index);
+          updatedSelectedProducts.set(productId, selectedProduct);
+        }
+      }
+
       return {
         products: updatedProducts,
         editingProduct: updatedEditingProduct,
+        selectedProducts: updatedSelectedProducts,
       };
     }),
+
   addProductDiscount: (productId: string) => {
     set((state) => {
       const updatedProduct = state.products.find((p) => p.id === productId);
+
       if (updatedProduct) {
+        const newDiscount = state.newDiscount;
         const newProduct = {
           ...updatedProduct,
-          discounts: [...updatedProduct.discounts, state.newDiscount],
+          discounts: [...updatedProduct.discounts, newDiscount],
         };
+        const updatedSelectedProducts = new Map(state.selectedProducts);
+        if (updatedSelectedProducts.has(productId)) {
+          const selectedProduct = updatedSelectedProducts.get(productId);
+          if (selectedProduct) {
+            selectedProduct.discounts.push(newDiscount);
+            updatedSelectedProducts.set(productId, selectedProduct);
+          }
+        }
 
         return {
           products: state.products.map((p) => (p.id === newProduct.id ? newProduct : p)),
           editingProduct: newProduct,
           newDiscount: { quantity: 0, rate: 0 },
+          selectedProducts: updatedSelectedProducts,
         };
       }
+
       return state;
     });
   },
