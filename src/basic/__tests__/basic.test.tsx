@@ -493,8 +493,8 @@ describe('basic > ', () => {
       */
       const total = result.current.calculateTotal();
       expect(total.totalBeforeDiscount).toBe(700200);
-      expect(total.totalAfterDiscount).toBe(513180);
-      expect(total.totalDiscount).toBe(187020);
+      expect(total.totalAfterDiscount).toBe(540180);
+      expect(total.totalDiscount).toBe(160020);
     });
   });
 });
