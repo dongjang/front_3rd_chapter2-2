@@ -1,4 +1,4 @@
-import Input from '../../../../../atoms/input';
+import Input from '../../../../../atoms/Input';
 import { ProductEditDiscountAddInputProps } from '../../../../../../types/productType';
 
 const ProductEditDiscountAddInput = ({
