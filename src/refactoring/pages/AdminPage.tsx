@@ -1,6 +1,6 @@
 import CouponManagement from '../components/admin/couponManagement/index.tsx';
 import ProductManagement from '../components/admin/productManagement/index.tsx';
-import Title from '../atoms/Title.tsx';
+import Title from '../components/atoms/Title.tsx';
 
 export const AdminPage = () => {
   return (

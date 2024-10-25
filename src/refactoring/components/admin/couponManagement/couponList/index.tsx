@@ -1,5 +1,5 @@
 import { useCoupons } from '../../../../hooks';
-import Title from '../../../../atoms/Title';
+import Title from '../../../atoms/Title';
 
 const index = () => {
   const { coupons } = useCoupons();

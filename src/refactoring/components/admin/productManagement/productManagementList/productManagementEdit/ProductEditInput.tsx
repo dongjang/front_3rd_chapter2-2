@@ -1,4 +1,4 @@
-import Input from '../../../../../atoms/input';
+import Input from '../../../../atoms/input';
 import { useProducts, useProductForm } from '../../../../../hooks';
 
 const ProductEditInput = () => {

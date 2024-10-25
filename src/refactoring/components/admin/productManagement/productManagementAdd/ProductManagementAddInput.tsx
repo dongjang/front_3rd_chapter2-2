@@ -1,4 +1,4 @@
-import Input from '../../../../atoms/input';
+import Input from '../../../atoms/input';
 import { productManagementAddInputProps } from '../../../../types/productType';
 
 const ProductManagementAddInput = ({ newProduct, handleNewProduct }: productManagementAddInputProps) => {
